@@ -1,10 +1,13 @@
 <template>
   <div :class="[{ flexStart: step === 1 }, 'app']">
-    <Search v-model="searchValue" @input="handleInput" />
+    <Claim v-if="step === 0" />
+    <transition name="slide">
+      <Search v-model="searchValue" @input="handleInput" />
+    </transition>
     <div class="results" v-if="step === 1 && !loading && results">
       <Item v-for="item in results" :item="item" :key="item.id" />
     </div>
-    <Ad :class="{ absoluteBottom: step === 0 }" />
+    <Ad :class="{ absoluteBottom: step === 0 || loading }" />
   </div>
 </template>
 
@@ -12,6 +15,7 @@
 import axios from 'axios';
 import debounce from 'debounce';
 import Search from '@/components/Search.vue';
+import Claim from '@/components/Claim.vue';
 import Item from '@/components/Item.vue';
 import Ad from '@/components/Ad.vue';
 
@@ -21,6 +25,7 @@ export default {
   name: 'App',
   components: {
     Search,
+    Claim,
     Item,
     Ad,
 
@@ -45,7 +50,6 @@ export default {
 
             const { data } = response;
             this.results = data.results;
-            console.log(data);
           }
         });
     }, 600),
@@ -64,6 +68,12 @@ export default {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     font-family: 'Montserrat', sans-serif;
+  }
+  .slide-enter-active, .slide-leave-active {
+    transition: margin-top .3s ease;
+  }
+  .slide-enter, .slide-leave-to {
+    margin-top: -50px;
   }
   .app {
     width: 100%;

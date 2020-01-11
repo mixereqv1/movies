@@ -7,7 +7,7 @@
       <div class="movie">
         <h1> {{ title }} </h1>
         <p> {{ description }} </p>
-        <a target="_blank" class="movieLink" :href="movie">TMDb</a>
+        <a target="_blank" class="movieLink" :href="movie">Zobacz na: TMDb</a>
       </div>
   </div>
 </template>

@@ -4,14 +4,16 @@
     <div class="results" v-if="step === 1 && !loading && results">
       <Item v-for="item in results" :item="item" :key="item.id" />
     </div>
+    <Ad :class="{ absoluteBottom: step === 0 }" />
   </div>
 </template>
 
 <script>
 import axios from 'axios';
 import debounce from 'debounce';
-import Search from './components/Search.vue';
-import Item from './components/Item.vue';
+import Search from '@/components/Search.vue';
+import Item from '@/components/Item.vue';
+import Ad from '@/components/Ad.vue';
 
 const baseURL = 'https://api.themoviedb.org/3/search/movie?api_key=4076f33084bc57273f90e8fcf48bff6e&language=pl&query=';
 
@@ -20,6 +22,7 @@ export default {
   components: {
     Search,
     Item,
+    Ad,
 
   },
   data() {

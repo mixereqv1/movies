@@ -95,6 +95,7 @@ export default {
         background-repeat: no-repeat;
         width: 185px;
         height: 278px;
+        margin-top: 20px;
       }
 
       .movie {

@@ -1,4 +1,6 @@
-# movies
+# Movies
+
+# Alpha version 0.1
 
 ## Project setup
 ```
